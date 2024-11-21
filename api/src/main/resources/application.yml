@@ -1,0 +1,10 @@
+server:
+  port: 81
+
+spring:
+  application:
+    name: management
+  mvc:
+    view:
+      suffix: .html
+      prefix: /

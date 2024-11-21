@@ -17,3 +17,6 @@ spring:
     host: ${REDIS_HOST}
     port: ${REDIS_PORT:6379}
     password: ${REDIS_PASSWORD:}
+
+court:
+  address: jorbcetd.court.ektdecao.3kwdsc3h.com

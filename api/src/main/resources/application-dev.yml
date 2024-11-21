@@ -17,3 +17,6 @@ spring:
     host: 127.0.0.1
     port: 6379
     password: sBPC9tZL0vMW8sn
+
+court:
+  address: 127.0.0.1:80

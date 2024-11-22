@@ -1,26 +1,24 @@
 package com.tencent.api.controller;
 
 import com.tencent.common.dto.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.tencent.service.feign.CounterFeign;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
+
 /**
  * counter控制器
  */
 @RestController
-
+@Slf4j
 public class CounterController {
 
-	final Logger logger;
-
-	public CounterController() {
-		this.logger = LoggerFactory.getLogger(CounterController.class);
-	}
-
+	@Resource
+	CounterFeign counterFeign;
 
 	/**
 	 * 获取当前计数
@@ -29,8 +27,8 @@ public class CounterController {
 	 */
 	@GetMapping(value = "/api/count")
 	ApiResponse get() {
-		logger.info("/api/count get request");
-		return ApiResponse.ok();
+		log.info("/api/count get request");
+		return counterFeign.get();
 	}
 
 
@@ -42,8 +40,8 @@ public class CounterController {
 	 */
 	@PostMapping(value = "/api/count")
 	ApiResponse create(@RequestBody CounterRequest request) {
-		logger.info("/api/count post request, action: {}", request.getAction());
-		return ApiResponse.ok();
+		log.info("/api/count post request, action: {}", request.getAction());
+		return counterFeign.create(request);
 	}
 
 }
